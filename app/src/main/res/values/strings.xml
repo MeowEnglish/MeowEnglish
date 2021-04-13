@@ -2,5 +2,5 @@
     <string name="app_name">Meow English</string>
     <string name="profile_tab">Профиль</string>
     <string name="learn_tab">Запоминание</string>
-    <string name="words_tab">Слова</string>
+    <string name="library_tab">Библиотека</string>
 </resources>
