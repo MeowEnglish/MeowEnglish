@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_learn"
-        android:name="com.meowenglish.meowenglish.ui.home.HomeFragment"
+        android:name="com.meowenglish.meowenglish.ui.learnTab.LearnFragment"
         android:label="@string/learn_tab"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_learn" />
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="com.meowenglish.meowenglish.ui.dashboard.DashboardFragment"
+        android:name="com.meowenglish.meowenglish.ui.libraryTab.LibraryFragment"
         android:label="@string/library_tab"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_library" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.meowenglish.meowenglish.ui.notifications.NotificationsFragment"
+        android:name="com.meowenglish.meowenglish.ui.profileTab.ProfileFragment"
         android:label="@string/profile_tab"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

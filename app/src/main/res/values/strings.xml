@@ -3,4 +3,5 @@
     <string name="profile_tab">Профиль</string>
     <string name="learn_tab">Запоминание</string>
     <string name="library_tab">Библиотека</string>
+    <string name="empty_library">Библиотека пуста</string>
 </resources>
