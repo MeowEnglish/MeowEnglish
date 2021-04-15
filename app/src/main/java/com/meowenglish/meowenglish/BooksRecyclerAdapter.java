@@ -3,6 +3,7 @@ package com.meowenglish.meowenglish;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,16 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Book book = books.get(position);
 
-        holder.bookCoverImage.setImageBitmap(convertBytesToBitmap(book.getCoverImage()));
+        byte[] bookCoverImageBytes = book.getCoverImage();
+        if (bookCoverImageBytes.length <= 0)
+        {
+            Drawable defaulBookImage = context.getResources().getDrawable(R.drawable.book);
+            holder.bookCoverImage.setImageDrawable(defaulBookImage);
+        }
+        else
+        {
+            holder.bookCoverImage.setImageBitmap(convertBytesToBitmap(book.getCoverImage()));
+        }
         holder.bookTitle.setText(book.getTitle());
     }
 
