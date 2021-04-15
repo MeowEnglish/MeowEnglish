@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_orange">#D99066</color>
     <color name="orange">#BD6532</color>
+    <color name="back_blue">#96BFD9</color>
+    <color name="back_button">#225954</color>
 </resources>

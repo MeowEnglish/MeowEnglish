@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@drawable/backClear"
     tools:context=".SplashScreenActivity">
 
     <ImageView
@@ -15,5 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/book" />
+        app:srcCompat="@drawable/ic__17_kitty_32" />
 </androidx.constraintlayout.widget.ConstraintLayout>
