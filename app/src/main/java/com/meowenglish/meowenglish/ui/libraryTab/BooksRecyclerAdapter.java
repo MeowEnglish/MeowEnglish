@@ -40,7 +40,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.book_item, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, books.get(books.size() - 1));
     }
 
     @Override
@@ -80,12 +80,15 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     {
         ImageView bookCoverImage;
         TextView bookTitle;
+        Book book;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, Book book) {
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            this.book = book;
 
             bookCoverImage = itemView.findViewById(R.id.bookCoverImage);
             bookTitle = itemView.findViewById(R.id.bookTitle);
@@ -96,6 +99,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         public void onClick(View v) {
             Intent wordFrequenceIntent = new Intent(context, WordFrequenceActivity.class);
             wordFrequenceIntent.putExtra(Intent.EXTRA_TEXT, bookTitle.getText());
+            wordFrequenceIntent.putExtra("BOOK", book);
 
             context.startActivity(wordFrequenceIntent);
         }
