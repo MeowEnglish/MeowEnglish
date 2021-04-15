@@ -1,6 +1,7 @@
-package com.meowenglish.meowenglish;
+package com.meowenglish.meowenglish.ui.libraryTab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.meowenglish.meowenglish.R;
+import com.meowenglish.meowenglish.WordFrequenceActivity;
 import com.meowenglish.meowenglish.data.Book;
 
 import java.io.ByteArrayOutputStream;
@@ -73,7 +76,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         return stream.toByteArray();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         ImageView bookCoverImage;
         TextView bookTitle;
@@ -82,8 +85,19 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            itemView.setOnClickListener(this);
+
             bookCoverImage = itemView.findViewById(R.id.bookCoverImage);
             bookTitle = itemView.findViewById(R.id.bookTitle);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            Intent wordFrequenceIntent = new Intent(context, WordFrequenceActivity.class);
+            wordFrequenceIntent.putExtra(Intent.EXTRA_TEXT, bookTitle.getText());
+
+            context.startActivity(wordFrequenceIntent);
         }
     }
 }

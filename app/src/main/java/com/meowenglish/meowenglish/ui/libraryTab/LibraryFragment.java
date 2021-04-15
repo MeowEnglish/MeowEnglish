@@ -1,9 +1,7 @@
 package com.meowenglish.meowenglish.ui.libraryTab;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.meowenglish.meowenglish.data.Book;
-import com.meowenglish.meowenglish.BooksRecyclerAdapter;
 import com.meowenglish.meowenglish.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
