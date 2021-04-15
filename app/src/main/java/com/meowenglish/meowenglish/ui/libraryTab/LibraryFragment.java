@@ -1,6 +1,8 @@
 package com.meowenglish.meowenglish.ui.libraryTab;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.meowenglish.meowenglish.Reader.EpubReaderF;
+import com.meowenglish.meowenglish.Reader.logTableOfContents;
+import com.meowenglish.meowenglish.UriConvert;
 import com.meowenglish.meowenglish.data.Book;
 import com.meowenglish.meowenglish.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -81,14 +88,29 @@ public class LibraryFragment extends Fragment {
         }
     }
 
+    private Bitmap convertBytesToBitmap(byte[] bytes)
+    {
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+    private byte[] convertBitmapToBytes(Bitmap bitmap)
+    {
+        if (bitmap == null)
+        {
+            return new byte[0];
+        }
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && requestCode == GET_BOOK_REQUEST_CODE)
         {
-            String lastPathSegment = data.getData().getLastPathSegment();
-            String filePath = data.getData().getPath();
+            String filePath = UriConvert.getPath(getContext(), data.getData());
 
             int lastDotIndex = filePath.lastIndexOf('.');
             String fileExtension = filePath.substring(lastDotIndex + 1);
@@ -103,10 +125,26 @@ public class LibraryFragment extends Fragment {
                 case "epub":
                 {
                     Book newBook;
+
                     //Read book details:
-                    newBook = new Book(fileName, new byte[0]);
+                    EpubReaderF epubReaderF = new EpubReaderF();
+
+                    filePath = UriConvert.getPath(getContext(), data.getData());
+
+                    nl.siegmann.epublib.domain.Book epubBook = epubReaderF.ReadFile(filePath);
+
+                    Bitmap coverImage = null;
+                    try {
+                        coverImage = BitmapFactory.decodeStream(epubBook.getCoverImage().getInputStream());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    newBook = new Book(epubBook.getTitle(), convertBitmapToBytes(coverImage));
 
                     //Analyse the book:
+                    logTableOfContents epubAnalizer = new logTableOfContents();
+                    newBook.AddWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
 
                     //Add to library:
                     books.add(newBook);
