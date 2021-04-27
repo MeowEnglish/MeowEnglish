@@ -1,7 +1,6 @@
 package com.meowenglish.meowenglish.data;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
 public class Book
@@ -95,5 +94,10 @@ public class Book
 
     public void setDateOfLastStudy(long dateOfLastStudy) {
         DateOfLastStudy = dateOfLastStudy;
+    }
+
+    public void WdAdd(Word Wd)
+    {
+        Words.add(Wd);
     }
 }
