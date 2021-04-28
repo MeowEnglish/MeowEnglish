@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backClear"
+    android:background="@color/back_blue"
     tools:context=".SplashScreenActivity">
 
     <ImageView
@@ -18,4 +18,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/ic__17_kitty_32" />
+
+    <TextView
+        android:id="@+id/splashText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bebas"
+        android:gravity="center"
+        android:text="Meow English"
+        android:textSize="60dp"
+        android:layout_gravity="bottom"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
