@@ -144,7 +144,7 @@ public class LibraryFragment extends Fragment {
 
                     //Analyse the book:
                     logTableOfContents epubAnalizer = new logTableOfContents();
-                    newBook.AddWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
+                    //newBook.AddWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
 
                     //Add to library:
                     books.add(newBook);

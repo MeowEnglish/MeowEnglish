@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         public void onClick(View v) {
             Intent wordFrequenceIntent = new Intent(context, WordFrequenceActivity.class);
             wordFrequenceIntent.putExtra(Intent.EXTRA_TEXT, bookTitle.getText());
-            wordFrequenceIntent.putExtra("BOOK", book);
+            wordFrequenceIntent.putExtra("BOOK", (Parcelable) book);
 
             context.startActivity(wordFrequenceIntent);
         }

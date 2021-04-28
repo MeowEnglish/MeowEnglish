@@ -1,57 +1,52 @@
 package com.meowenglish.meowenglish.data;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Book implements Parcelable
+public class Book
 {
+    /*Название книги*/
     private String title;
+
+    /*Обложка книги*/
     private byte[] coverImage;
 
-    private TreeMap<String, Integer> wordFrequencies;
+    /*Список слов данной книги*/
+    private ArrayList<Word> Words;
 
+    /*Состояние книги: например: 1 - открыта
+     *   2 - находится в изучении
+     *   3 - Изучена*/
+    private byte State;
+
+    /*Время начало изучения книги*/
+    private long DateAdded;
+
+    /*Время посленего взаимодеймвтия с книгой*/
+    private long DateOfLastStudy;
+
+    public Book() { }
 
     public Book(String title, byte[] coverImage)
     {
         this.title = title;
         this.coverImage = coverImage;
+        Words = new ArrayList<>(); /*!!!!!! ArrayList<Word>();*/
     }
 
-
-    protected Book(Parcel in) {
-        title = in.readString();
-        coverImage = in.createByteArray();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeByteArray(coverImage);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Book> CREATOR = new Creator<Book>() {
-        @Override
-        public Book createFromParcel(Parcel in) {
-            return new Book(in);
+    /* 1 - название, 2 - обложка, 3 - все слова с их частотами*/
+    public Book(String title, byte[] coverImage, TreeMap<String, Integer> WordsI)
+    {
+        this.title = title;
+        this.coverImage = coverImage;
+        this.Words = new ArrayList<>();/*!!!!!! ArrayList<Word>();*/
+        for (TreeMap.Entry<String, Integer> Word : WordsI.entrySet() )
+        {
+            Words.add(new Word(Word.getKey(), Word.getValue()));
         }
-
-        @Override
-        public Book[] newArray(int size) {
-            return new Book[size];
-        }
-    };
-
-    public void AddWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
-        this.wordFrequencies = wordFrequencies;
     }
 
+    /*Здесь можно создать конструктор, в который будет передаваться путь к файлу*/
 
     public String getTitle() {
         return title;
@@ -69,7 +64,40 @@ public class Book implements Parcelable
         this.coverImage = coverImage;
     }
 
-    public TreeMap<String, Integer> getWordFrequencies() {
-        return wordFrequencies;
+    public ArrayList<Word> getWords() {
+        return Words;
+    }
+
+    public void setWords(ArrayList<Word> words) {
+        Words = words;
+    }
+
+    public byte getState() {
+        return State;
+    }
+
+    public void setState(byte state) {
+        State = state;
+    }
+
+    public long getDateAdded() {
+        return DateAdded;
+    }
+
+    public void setDateAdded(long dateAdded) {
+        DateAdded = dateAdded;
+    }
+
+    public long getDateOfLastStudy() {
+        return DateOfLastStudy;
+    }
+
+    public void setDateOfLastStudy(long dateOfLastStudy) {
+        DateOfLastStudy = dateOfLastStudy;
+    }
+
+    public void WdAdd(Word Wd)
+    {
+        Words.add(Wd);
     }
 }

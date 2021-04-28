@@ -29,7 +29,7 @@ public class WordFrequenceActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(bookTitle);
 
-        TreeMap<String, Integer> wordFrequencies = book.getWordFrequencies();
+       // TreeMap<String, Integer> wordFrequencies = book.getWordFrequencies();
 
         //Test:
 //        wordFrequencies = new TreeMap<String, Integer>();
@@ -43,8 +43,8 @@ public class WordFrequenceActivity extends AppCompatActivity {
 //        wordFrequencies.put("through", 162);
 //        wordFrequencies.put("door", 152);
 
-        WordsRecyclerAdapter wordsRecyclerAdapter = new WordsRecyclerAdapter(getApplicationContext(), book.getWordFrequencies());
-        wordFrequenciesRecyclerView.setAdapter(wordsRecyclerAdapter);
-        wordFrequenciesRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //WordsRecyclerAdapter wordsRecyclerAdapter = new WordsRecyclerAdapter(getApplicationContext(), book.getWordFrequencies());
+        //wordFrequenciesRecyclerView.setAdapter(wordsRecyclerAdapter);
+       // wordFrequenciesRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 }
