@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:background="@color/back_blue">
 
     <EditText
         android:id="@+id/edLogin"
@@ -39,7 +41,7 @@
         android:onClick="onClickSignIn"
         android:text=" Войти"
         android:visibility="gone"
-        app:backgroundTint="#7F3CAA"
+        app:backgroundTint="#F2BFAC"
         app:layout_constraintEnd_toEndOf="@+id/edPassword"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edPassword"
@@ -53,7 +55,7 @@
         android:onClick="onClickCreateAcc"
         android:text="Создать аккаунт"
         android:visibility="gone"
-        app:backgroundTint="#301660"
+        app:backgroundTint="#D99066"
         app:layout_constraintEnd_toEndOf="@+id/edSignIn"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/edSignIn"
@@ -63,12 +65,13 @@
         android:id="@+id/edName"
         android:layout_width="291dp"
         android:layout_height="47dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Имя"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edLogin" />
 

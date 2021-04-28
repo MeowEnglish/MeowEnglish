@@ -1,5 +1,6 @@
 package com.meowenglish.meowenglish;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -73,8 +74,11 @@ public class LoginActivity extends AppCompatActivity
     /*Кнопка войти*/
     public void onClickSignIn(View view)
     {
-
+        Intent homeIntent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(homeIntent);
+        finish();
     }
+
 
     /*Убирает интерфейс регистрации и включает интрефейс входа*/
     private void disableRegistInter()

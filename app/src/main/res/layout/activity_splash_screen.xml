@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,14 +9,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
+        android:layout_width="wrap_content"
+        android:layout_height="310dp"
+        android:layout_centerVertical="true"
+        android:layout_x="202dp"
+        android:layout_y="155dp"
         app:srcCompat="@drawable/ic__17_kitty_32" />
 
     <TextView
@@ -27,5 +24,6 @@
         android:gravity="center"
         android:text="Meow English"
         android:textSize="60dp"
-        android:layout_gravity="bottom"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/imageView"
+        tools:ignore="MissingConstraints" />
+</RelativeLayout>
