@@ -3,20 +3,41 @@ package com.meowenglish.meowenglish.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.TreeMap;
 
-public class Book implements Parcelable
+public class Book implements Parcelable, Serializable
 {
+    public final static String PARCELABLE_EXTRA_NAME = "BOOK";
+
+
     private String title;
     private byte[] coverImage;
 
-    private TreeMap<String, Integer> wordFrequencies;
+    private TreeMap<String, Integer> wordFrequencies = new TreeMap<>();
 
 
     public Book(String title, byte[] coverImage)
     {
         this.title = title;
         this.coverImage = coverImage;
+    }
+    public Book(String title, byte[] coverImage, TreeMap<String, Integer> wordFrequencies)
+    {
+        this(title, coverImage);
+
+        this.wordFrequencies = wordFrequencies;
     }
 
 
@@ -29,6 +50,23 @@ public class Book implements Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeByteArray(coverImage);
+    }
+    @Override
+    public boolean equals(Object otherBook) {
+
+        // If the object is compared with itself then return true
+        if (otherBook == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(otherBook instanceof Book)) {
+            return false;
+        }
+
+        // Compare the data members and return accordingly
+        return this.title.equals(((Book) otherBook).title);
     }
 
     @Override

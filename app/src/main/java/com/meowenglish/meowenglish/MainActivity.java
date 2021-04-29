@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.meowenglish.meowenglish.data.LibraryStorage;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,5 +30,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         getSupportActionBar().hide();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ((LibraryStorage) getApplication()).saveData();
     }
 }

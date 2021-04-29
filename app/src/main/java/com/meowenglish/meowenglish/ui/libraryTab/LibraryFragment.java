@@ -24,6 +24,7 @@ import com.meowenglish.meowenglish.Reader.logTableOfContents;
 import com.meowenglish.meowenglish.UriConvert;
 import com.meowenglish.meowenglish.data.Book;
 import com.meowenglish.meowenglish.R;
+import com.meowenglish.meowenglish.data.LibraryStorage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,9 +53,13 @@ public class LibraryFragment extends Fragment {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
-        books = new ArrayList<>();
-        books.add(new Book("Пример 0", new byte[0]));
-        books.add(new Book("Пример 1", new byte[0]));
+        books = ((LibraryStorage)getActivity().getApplication()).getBooks();
+        if (books.size() == 0)
+        {
+            books.add(new Book("Пример 0", new byte[0]));
+            books.add(new Book("Пример 1", new byte[0]));
+        }
+
         showBooks(books);
 
         FloatingActionButton addNewBookButton = view.findViewById(R.id.addBookButton);
