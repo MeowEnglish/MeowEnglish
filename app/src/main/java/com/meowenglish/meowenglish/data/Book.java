@@ -16,16 +16,29 @@ import com.google.gson.reflect.TypeToken;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.TreeMap;
+import java.util.ArrayList;
 
 public class Book implements Parcelable, Serializable
 {
     public final static String PARCELABLE_EXTRA_NAME = "BOOK";
-
-
+    /*Название книги*/
     private String title;
+
+    /*Обложка книги*/
     private byte[] coverImage;
 
     private TreeMap<String, Integer> wordFrequencies = new TreeMap<>();
+
+    /*Состояние книги: например: 1 - открыта
+    *   2 - находится в изучении
+    *   3 - Изучена*/
+    private byte State;
+
+    /*Время начало изучения книги*/
+    private long DateAdded;
+
+    /*Время посленего взаимодеймвтия с книгой*/
+    private long DateOfLastStudy;
 
 
     public Book(String title, byte[] coverImage)
@@ -91,6 +104,8 @@ public class Book implements Parcelable, Serializable
     }
 
 
+    /*Здесь можно создать конструктор, в который будет передаваться путь к файлу*/
+
     public String getTitle() {
         return title;
     }
@@ -109,5 +124,29 @@ public class Book implements Parcelable, Serializable
 
     public TreeMap<String, Integer> getWordFrequencies() {
         return wordFrequencies;
+    }
+
+    public byte getState() {
+        return State;
+    }
+
+    public void setState(byte state) {
+        State = state;
+    }
+
+    public long getDateAdded() {
+        return DateAdded;
+    }
+
+    public void setDateAdded(long dateAdded) {
+        DateAdded = dateAdded;
+    }
+
+    public long getDateOfLastStudy() {
+        return DateOfLastStudy;
+    }
+
+    public void setDateOfLastStudy(long dateOfLastStudy) {
+        DateOfLastStudy = dateOfLastStudy;
     }
 }
