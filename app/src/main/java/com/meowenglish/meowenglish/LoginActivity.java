@@ -2,11 +2,14 @@ package com.meowenglish.meowenglish;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,11 +28,13 @@ public class LoginActivity extends AppCompatActivity
 {
     String[] Gender = { "Мужской", "Женский", "Свой "};
 
-    private EditText edLogin, edEmail, edPasswordSignUp, edPassword, edName, edOccupation;
-    private Button edSignIn, edSignUp/*создать акк*/, onCSignUp /*зарегестрироваться*/;
+    private EditText edLogin, edEmail, edPasswordSignUp, edPassword, edName;
     private Spinner edGender;
     ArrayAdapter<String> adapter;
     FirebaseUser User;
+
+    private ViewGroup signInLayout;
+    private ViewGroup logInLayout;
 
     private FirebaseAuth mAuth;
     @Override
@@ -64,6 +69,9 @@ public class LoginActivity extends AppCompatActivity
 
     private void init()
     {
+        signInLayout = findViewById(R.id.signInLayout);
+        logInLayout = findViewById(R.id.logInLayout);
+
         edLogin = findViewById(R.id.edLogin);
         edEmail = findViewById(R.id.edEmail);
         edPasswordSignUp = findViewById(R.id.edPasswordSignUp);
@@ -74,10 +82,6 @@ public class LoginActivity extends AppCompatActivity
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Gender);
         edGender.setAdapter(adapter);
 
-        edOccupation = findViewById(R.id.edOccupation);
-        edSignIn = findViewById(R.id.edSignIn);
-        edSignUp = findViewById(R.id.edSignUp);
-        onCSignUp = findViewById(R.id.onCSignUp);
         mAuth = FirebaseAuth.getInstance();
         disableRegistInter();
     }
@@ -86,7 +90,7 @@ public class LoginActivity extends AppCompatActivity
     public void onClickSignUp(View view)
     {
         if (!TextUtils.isEmpty(edEmail.getText().toString()) && !TextUtils.isEmpty(edName.getText().toString())
-                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()) && !TextUtils.isEmpty(edOccupation.getText().toString()))
+                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()))
         {
             mAuth.createUserWithEmailAndPassword(edEmail.getText().toString(), edPasswordSignUp.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -166,30 +170,14 @@ public class LoginActivity extends AppCompatActivity
     /*Убирает интерфейс регистрации и включает интрефейс входа*/
     private void disableRegistInter()
     {
-        edLogin.setVisibility(View.VISIBLE);
-        edEmail.setVisibility(View.GONE);
-        edPasswordSignUp.setVisibility(View.GONE);
-        edPassword.setVisibility(View.VISIBLE);
-        edName.setVisibility(View.GONE);
-        edGender.setVisibility(View.GONE);
-        edOccupation.setVisibility(View.GONE);
-        edSignIn.setVisibility(View.VISIBLE);
-        edSignUp.setVisibility(View.VISIBLE);
-        onCSignUp.setVisibility(View.GONE);
+        signInLayout.setVisibility(View.VISIBLE);
+        logInLayout.setVisibility(View.GONE);
     }
 
     /*Убирает интерфейс входа и включает интрефейс регистрации*/
     private void enableRegistInter()
     {
-        edLogin.setVisibility(View.GONE);
-        edEmail.setVisibility(View.VISIBLE);
-        edPasswordSignUp.setVisibility(View.VISIBLE);
-        edPassword.setVisibility(View.GONE);
-        edName.setVisibility(View.VISIBLE);
-        edGender.setVisibility(View.VISIBLE);
-        edOccupation.setVisibility(View.VISIBLE);
-        edSignIn.setVisibility(View.GONE);
-        edSignUp.setVisibility(View.GONE);
-        onCSignUp.setVisibility(View.VISIBLE);
+        signInLayout.setVisibility(View.GONE);
+        logInLayout.setVisibility(View.VISIBLE);
     }
 }
