@@ -30,8 +30,8 @@ public class Book implements Parcelable, Serializable
     private TreeMap<String, Integer> wordFrequencies = new TreeMap<>();
 
     /*Состояние книги: например: 1 - открыта
-    *   2 - находится в изучении
-    *   3 - Изучена*/
+     *   2 - находится в изучении
+     *   3 - Изучена*/
     private byte State;
 
     /*Время начало изучения книги*/

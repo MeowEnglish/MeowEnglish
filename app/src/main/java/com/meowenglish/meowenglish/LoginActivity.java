@@ -158,8 +158,9 @@ public class LoginActivity extends AppCompatActivity
                     }
                 }
             });
+        }
     }
-    }
+
 
     /*Убирает интерфейс регистрации и включает интрефейс входа*/
     private void disableRegistInter()

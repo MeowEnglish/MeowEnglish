@@ -1,22 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:addStatesFromChildren="false"
+    android:background="@color/back_blue"
+
     tools:context=".ui.profileTab.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/room"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_x="0dp"
+        android:layout_y="50dp"
+        app:srcCompat="@drawable/ic_room"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="109dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="97dp"
+        android:layout_height="88dp"
+        android:layout_x="199dp"
+        android:layout_y="326dp"
+        app:srcCompat="@drawable/ic__14_kitty_35"
+        tools:layout_editor_absoluteX="327dp"
+        tools:layout_editor_absoluteY="373dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="97dp"
+        android:layout_height="86dp"
+        android:layout_x="25dp"
+        android:layout_y="433dp"
+        app:srcCompat="@drawable/ic__45_kitty_5"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+<TableLayout android:layout_height="wrap_content" android:layout_width="wrap_content">
+    <Button
+        android:id="@+id/statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Статистика" />
+</TableLayout>
+</AbsoluteLayout>

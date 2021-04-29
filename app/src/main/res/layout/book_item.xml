@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/back_blue">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,7 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/back_blue">
 
             <ImageView
                 android:id="@+id/bookCoverImage"
@@ -25,7 +27,7 @@
                 android:layout_weight="1"
                 android:padding="10dp"
                 app:srcCompat="@drawable/book"
-                />
+                android:background="@color/back_blue"/>
 
             <TextView
                 android:id="@+id/bookTitle"
@@ -37,7 +39,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="Название книги"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:background="@color/back_blue"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
