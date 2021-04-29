@@ -107,7 +107,8 @@ public class LoginActivity extends AppCompatActivity
         else {
             Toast.makeText(this,"Заполните все поля", Toast.LENGTH_SHORT).show();
         }
-    }
+
+   }
 
     /*Кнопка создания аккаунта*/
     public void onClickCreateAcc(View view)
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity
         if (!TextUtils.isEmpty(edLogin.getText().toString()) && !TextUtils.isEmpty(edPassword.getText().toString()))
         {
             User = mAuth.getCurrentUser();
-            if (User.getEmail().toString() == edLogin.getText().toString()) {
+            if (User != null && User.getEmail().toString() == edLogin.getText().toString()) {
                 if (!User.isEmailVerified())
                     Toast.makeText(getApplicationContext(), "Подтвердите электронную почту", Toast.LENGTH_SHORT).show();
             }

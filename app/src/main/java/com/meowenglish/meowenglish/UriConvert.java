@@ -31,6 +31,9 @@ public class UriConvert {
                 // DownloadsProvider
                 else if (isDownloadsDocument(uri)) {
 
+                    //new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), mFileName);
+
+
                     final String id = DocumentsContract.getDocumentId(uri);
                     final Uri contentUri = ContentUris.withAppendedId(
                             Uri.parse("content://downloads/public_downloads"),

@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:name=".data.LibraryStorage"
         android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
         android:theme="@style/Theme.MeowEnglish">
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
