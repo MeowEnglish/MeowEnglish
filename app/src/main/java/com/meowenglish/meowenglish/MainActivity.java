@@ -1,9 +1,12 @@
 package com.meowenglish.meowenglish;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,5 +32,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         getSupportActionBar().hide();
+    }
+
+    public void edSignOutF()
+    {
+        Intent homeIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(homeIntent);
+        finish();
     }
 }

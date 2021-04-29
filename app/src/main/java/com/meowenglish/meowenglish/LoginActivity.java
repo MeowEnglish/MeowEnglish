@@ -20,6 +20,9 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.meowenglish.meowenglish.data.User;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -30,8 +33,9 @@ public class LoginActivity extends AppCompatActivity
     private Spinner edGender;
     ArrayAdapter<String> adapter;
     FirebaseUser User;
-
+    private com.meowenglish.meowenglish.data.User user;
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -96,6 +100,9 @@ public class LoginActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                         SendEmailVerif();
                         disableRegistInter();
+                        databaseReference = FirebaseDatabase.getInstance().getReference();
+                        user = new User(edName.getText().toString(), edEmail.getText().toString());
+                        databaseReference.push().setValue(user);
                     }
                     else
                     {
@@ -121,8 +128,8 @@ public class LoginActivity extends AppCompatActivity
         if (!TextUtils.isEmpty(edLogin.getText().toString()) && !TextUtils.isEmpty(edPassword.getText().toString()))
         {
             User = mAuth.getCurrentUser();
-            if (User.getEmail().toString() == edLogin.getText().toString()) {
-                if (!User.isEmailVerified())
+            if (User.getEmail().equals(edLogin.getText().toString()) && User.isEmailVerified())
+            {
                     Toast.makeText(getApplicationContext(), "Подтвердите электронную почту", Toast.LENGTH_SHORT).show();
             }
             else {
