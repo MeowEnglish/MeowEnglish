@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity
 {
     String[] Gender = { "Мужской", "Женский", "Свой "};
 
-    private EditText edLogin, edEmail, edPasswordSignUp, edPassword, edName;
+    private EditText edLogin, edEmail, edPasswordSignUp, edPassword, edName, edOccupation;
     private Spinner edGender;
     ArrayAdapter<String> adapter;
     FirebaseUser User;
@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity
         edPasswordSignUp = findViewById(R.id.edPasswordSignUp);
         edPassword = findViewById(R.id.edPassword);
         edName = findViewById(R.id.edName);
+        edOccupation = findViewById(R.id.edOccupation);
 
         edGender = (Spinner) findViewById(R.id.edGender);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Gender);

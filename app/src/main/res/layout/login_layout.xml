@@ -107,15 +107,37 @@
             />
 
         <TextView
-            android:id="@+id/edOccupation"
+            android:id="@+id/textOccupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:textSize="18dp"
             android:textColor="@color/black"
             android:inputType="textPersonName"
             android:text="Чем вы занимаетесь?"
+            />
+
+        <EditText
+            android:id="@+id/edOccupation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            />
+
+        <TextView
+            android:id="@+id/textGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:text="Укажите гендер"
             />
 
         <Spinner
