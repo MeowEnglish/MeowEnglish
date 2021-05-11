@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:onClick="edSignOutF"
         android:text="Выйти"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
