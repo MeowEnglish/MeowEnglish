@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    public void edSignOutF()
+    public void edSignOutF(View view)
     {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
         Intent homeIntent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(homeIntent);
         finish();
