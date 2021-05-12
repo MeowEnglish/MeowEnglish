@@ -114,9 +114,11 @@ public class LoginActivity extends AppCompatActivity
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-                        Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Регистрация прошла успешно. Подтвердите Email", Toast.LENGTH_SHORT).show();
                         disableRegistInter();
                         SendEmailVerif();
+                        edLogin.setText(edEmail.getText());
+                        edPassword.setText(edPasswordSignUp.getText());
                         edRepeatSendEmail.setVisibility(View.VISIBLE);
                         databaseReference = FirebaseDatabase.getInstance().getReference();
                         user = new User(edName.getText().toString(), edEmail.getText().toString());
@@ -187,6 +189,7 @@ public class LoginActivity extends AppCompatActivity
         onCSignUp.setVisibility(View.GONE);
         PasswordReset.setVisibility(View.GONE);
         sendPasswordReset.setVisibility(View.VISIBLE);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -211,6 +214,7 @@ public class LoginActivity extends AppCompatActivity
                 User.reload();
                 if (!User.isEmailVerified() && User.getEmail().equals(edLogin.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Подтвердите электронную почту", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Если вы уже подтвердили Email и не можете войти, подождите немного. База данных обновляется", Toast.LENGTH_SHORT).show();
                     edRepeatSendEmail.setVisibility(View.VISIBLE);
                 } else {
                     mAuth.signInWithEmailAndPassword(edLogin.getText().toString(), edPassword.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
