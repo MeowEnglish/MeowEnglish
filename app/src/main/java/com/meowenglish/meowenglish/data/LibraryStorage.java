@@ -41,7 +41,15 @@ public class LibraryStorage extends Application implements Serializable {
                     .create();
 
             Type typeOfBooksArray = new TypeToken<ArrayList<Book>>() { }.getType();
-            ArrayList<Book> books = libraryGson.fromJson(fileContent, typeOfBooksArray);
+            ArrayList<Book> books = new ArrayList<>();
+            try
+            {
+                books = libraryGson.fromJson(fileContent, typeOfBooksArray);
+            }
+            catch (Exception exception)
+            {
+
+            }
             if (books != null)
             {
                 this.books = books;

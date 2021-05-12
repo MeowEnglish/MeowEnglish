@@ -24,6 +24,9 @@ public class Book implements Parcelable, Serializable
     /*Название книги*/
     private String title;
 
+    /*Название книги*/
+    private String filePath;
+
     /*Обложка книги*/
     private byte[] coverImage;
 
@@ -41,14 +44,15 @@ public class Book implements Parcelable, Serializable
     private long DateOfLastStudy;
 
 
-    public Book(String title, byte[] coverImage)
+    public Book(String title, byte[] coverImage, String filePath)
     {
         this.title = title;
         this.coverImage = coverImage;
+        this.filePath = filePath;
     }
-    public Book(String title, byte[] coverImage, TreeMap<String, Integer> wordFrequencies)
+    public Book(String title, byte[] coverImage, String filePath, TreeMap<String, Integer> wordFrequencies)
     {
-        this(title, coverImage);
+        this(title, coverImage, filePath);
 
         this.wordFrequencies = wordFrequencies;
     }
@@ -110,6 +114,14 @@ public class Book implements Parcelable, Serializable
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public byte[] getCoverImage() {

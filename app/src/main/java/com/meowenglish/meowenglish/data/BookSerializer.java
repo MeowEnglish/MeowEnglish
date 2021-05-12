@@ -27,6 +27,7 @@ public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Bo
 
         JsonObject obj = new JsonObject();
         obj.addProperty("title", src.getTitle());
+        obj.addProperty("filePath", src.getFilePath());
         obj.addProperty("wordFrequencies", gson.toJson(src.getWordFrequencies()));
 
         return obj;
@@ -38,12 +39,13 @@ public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Bo
         JsonObject jsonObject = json.getAsJsonObject();
 
         String title = jsonObject.get("title").getAsString();
+        String filePath = jsonObject.get("filePath").getAsString();
         Type typeOfArray = new TypeToken<TreeMap<String, Integer>>() { }.getType();
         Map<String, Integer> wordFrequencies = gson.fromJson(jsonObject.get("wordFrequencies").getAsString(), typeOfArray);
         TreeMap<String, Integer> sortedWordFrequencies = new TreeMap<String, Integer>(new ValueComparator(wordFrequencies));
         sortedWordFrequencies.putAll(wordFrequencies);
 
-        return new Book(title, new byte[0], sortedWordFrequencies);
+        return new Book(title, new byte[0], filePath, sortedWordFrequencies);
     }
 
 
