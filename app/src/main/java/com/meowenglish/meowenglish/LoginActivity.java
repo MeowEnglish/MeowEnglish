@@ -98,11 +98,9 @@ public class LoginActivity extends AppCompatActivity
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-<<<<<<< HEAD
                         Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                         SendEmailVerif();
                         disableRegistInter();
-=======
                         Toast.makeText(getApplicationContext(), "Регистрация прошла успешно. Подтвердите Email", Toast.LENGTH_SHORT).show();
                         disableRegistInter();
                         SendEmailVerif();
@@ -112,7 +110,6 @@ public class LoginActivity extends AppCompatActivity
                         databaseReference = FirebaseDatabase.getInstance().getReference();
                         user = new User(edName.getText().toString(), edEmail.getText().toString());
                         databaseReference.push().setValue(user);
->>>>>>> f6295596df7d8932a99f58559efb419018bb917a
                     }
                     else
                     {
