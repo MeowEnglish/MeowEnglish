@@ -98,9 +98,21 @@ public class LoginActivity extends AppCompatActivity
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
+<<<<<<< HEAD
                         Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                         SendEmailVerif();
                         disableRegistInter();
+=======
+                        Toast.makeText(getApplicationContext(), "Регистрация прошла успешно. Подтвердите Email", Toast.LENGTH_SHORT).show();
+                        disableRegistInter();
+                        SendEmailVerif();
+                        edLogin.setText(edEmail.getText());
+                        edPassword.setText(edPasswordSignUp.getText());
+                        edRepeatSendEmail.setVisibility(View.VISIBLE);
+                        databaseReference = FirebaseDatabase.getInstance().getReference();
+                        user = new User(edName.getText().toString(), edEmail.getText().toString());
+                        databaseReference.push().setValue(user);
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
                     }
                     else
                     {
@@ -119,6 +131,71 @@ public class LoginActivity extends AppCompatActivity
     public void onClickCreateAcc(View view)
     {
         enableRegistInter();
+<<<<<<< HEAD
+=======
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void onClickSendPasswordReset(View view)
+    {
+        if (!TextUtils.isEmpty(edLogin.getText().toString()))
+        {
+            User = mAuth.getCurrentUser();
+            mAuth.sendPasswordResetEmail(edLogin.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>()
+            {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Письмо с инструкцией отправлено на почту", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(getApplicationContext(), "Ошибка восстановления", Toast.LENGTH_SHORT).show();
+                            }
+                            edLogin.setVisibility(View.VISIBLE);
+                            edPassword.setVisibility(View.VISIBLE);
+                            edSignIn.setVisibility(View.VISIBLE);
+                            edSignUp.setVisibility(View.VISIBLE);
+                            sendPasswordReset.setVisibility(View.GONE);
+                        }
+                    });
+        }
+        else {
+            Toast.makeText(this, "Введите логин (Email)", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    // Reset password
+    public void onClickPasswordReset(View view)
+    {
+        edRepeatSendEmail.setVisibility(View.GONE);
+        edLogin.setVisibility(View.VISIBLE);
+        edEmail.setVisibility(View.GONE);
+        edPasswordSignUp.setVisibility(View.GONE);
+        edPassword.setVisibility(View.GONE);
+        edName.setVisibility(View.GONE);
+        edGender.setVisibility(View.GONE);
+        edOccupation.setVisibility(View.GONE);
+        edSignIn.setVisibility(View.GONE);
+        edSignUp.setVisibility(View.GONE);
+        onCSignUp.setVisibility(View.GONE);
+        PasswordReset.setVisibility(View.GONE);
+        sendPasswordReset.setVisibility(View.VISIBLE);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                disableRegistInter();
+                actionBar.setDisplayHomeAsUpEnabled(false);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
     }
 
     /*Кнопка войти*/
@@ -130,6 +207,24 @@ public class LoginActivity extends AppCompatActivity
             if (User != null && User.getEmail().toString() == edLogin.getText().toString()) {
                 if (!User.isEmailVerified())
                     Toast.makeText(getApplicationContext(), "Подтвердите электронную почту", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+=======
+                    Toast.makeText(getApplicationContext(), "Если вы уже подтвердили Email и не можете войти, подождите немного. База данных обновляется", Toast.LENGTH_SHORT).show();
+                    edRepeatSendEmail.setVisibility(View.VISIBLE);
+                } else {
+                    mAuth.signInWithEmailAndPassword(edLogin.getText().toString(), edPassword.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Вход выполнен", Toast.LENGTH_SHORT).show();
+                                finishLogin();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Ошибка входа", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
             }
             else {
                 mAuth.signInWithEmailAndPassword(edLogin.getText().toString(), edPassword.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

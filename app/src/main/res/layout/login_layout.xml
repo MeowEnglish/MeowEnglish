@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/edLogin"
         android:layout_width="265dp"
-        android:layout_height="54dp"
+        android:layout_height="55dp"
         android:layout_marginTop="188dp"
         android:ems="10"
         android:gravity="center"
@@ -23,25 +23,25 @@
 
     <Button
         android:id="@+id/PasswordReset"
-        android:layout_width="262dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
         android:onClick="onClickPasswordReset"
         android:text="Забыл пароль"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/edSignUp"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edSignUp"
         app:layout_constraintTop_toBottomOf="@+id/edSignUp" />
 
     <EditText
         android:id="@+id/edPassword"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="15dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Password"
+        android:hint="Пароль"
         android:inputType="textPassword"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/edLogin"
@@ -51,7 +51,7 @@
     <Button
         android:id="@+id/edSignIn"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:onClick="onClickSignIn"
         android:text=" Войти"
@@ -64,15 +64,15 @@
 
     <Button
         android:id="@+id/edSignUp"
-        android:layout_width="268dp"
-        android:layout_height="45dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="12dp"
         android:onClick="onClickCreateAcc"
         android:text="Создать аккаунт"
         android:visibility="visible"
         app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/edSignIn"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edSignIn"
         app:layout_constraintTop_toBottomOf="@+id/edSignIn" />
 
@@ -94,8 +94,8 @@
 
     <EditText
         android:id="@+id/edName"
-        android:layout_width="291dp"
-        android:layout_height="47dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="128dp"
         android:ems="10"
         android:gravity="center"
@@ -108,8 +108,8 @@
 
     <EditText
         android:id="@+id/edEmail"
-        android:layout_width="291dp"
-        android:layout_height="51dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="23dp"
         android:ems="10"
         android:gravity="center"
@@ -123,8 +123,8 @@
 
     <EditText
         android:id="@+id/edPasswordSignUp"
-        android:layout_width="292dp"
-        android:layout_height="48dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:gravity="center"
@@ -150,8 +150,8 @@
 
     <Button
         android:id="@+id/onCSignUp"
-        android:layout_width="289dp"
-        android:layout_height="44dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="12dp"
         android:onClick="onClickSignUp"
         android:text="Зарегистрироваться"
@@ -163,8 +163,8 @@
 
     <EditText
         android:id="@+id/edOccupation"
-        android:layout_width="292dp"
-        android:layout_height="47dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="center"
@@ -178,8 +178,8 @@
 
     <Button
         android:id="@+id/sendPasswordReset"
-        android:layout_width="268dp"
-        android:layout_height="49dp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
         android:layout_marginTop="24dp"
         android:onClick="onClickSendPasswordReset"
         android:text="Продолжить"
