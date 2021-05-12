@@ -164,6 +164,8 @@ public class LoginActivity extends AppCompatActivity
                             edSignIn.setVisibility(View.VISIBLE);
                             edSignUp.setVisibility(View.VISIBLE);
                             sendPasswordReset.setVisibility(View.GONE);
+                            PasswordReset.setVisibility(View.VISIBLE);
+                            actionBar.setDisplayHomeAsUpEnabled(false);
                         }
                     });
         }
