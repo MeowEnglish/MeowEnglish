@@ -65,6 +65,7 @@ public class LibraryStorage extends Application implements Serializable {
     {
         return books;
     }
+
     public Book getBook(Book book)
     {
         for (Book libraryBook : books)
