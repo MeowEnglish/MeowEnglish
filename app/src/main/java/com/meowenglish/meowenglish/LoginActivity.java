@@ -2,22 +2,20 @@ package com.meowenglish.meowenglish;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,26 +23,20 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.meowenglish.meowenglish.data.User;
 
 public class LoginActivity extends AppCompatActivity
 {
     String[] Gender = { "Мужской", "Женский", "Свой "};
 
     private EditText edLogin, edEmail, edPasswordSignUp, edPassword, edName, edOccupation;
-    private Button edSignIn, edSignUp/*создать акк*/, onCSignUp /*зарегестрироваться*/, edRepeatSendEmail, PasswordReset, sendPasswordReset;
     private Spinner edGender;
-    ActionBar actionBar;
-
-
-
     ArrayAdapter<String> adapter;
     FirebaseUser User;
-    private com.meowenglish.meowenglish.data.User user;
+
+    private ViewGroup signInLayout;
+    private ViewGroup logInLayout;
+
     private FirebaseAuth mAuth;
-    private DatabaseReference databaseReference;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -77,43 +69,40 @@ public class LoginActivity extends AppCompatActivity
 
     private void init()
     {
+        signInLayout = findViewById(R.id.signInLayout);
+        logInLayout = findViewById(R.id.logInLayout);
+
         edLogin = findViewById(R.id.edLogin);
         edEmail = findViewById(R.id.edEmail);
         edPasswordSignUp = findViewById(R.id.edPasswordSignUp);
         edPassword = findViewById(R.id.edPassword);
         edName = findViewById(R.id.edName);
+        edOccupation = findViewById(R.id.edOccupation);
 
         edGender = (Spinner) findViewById(R.id.edGender);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Gender);
         edGender.setAdapter(adapter);
 
-        edRepeatSendEmail = findViewById(R.id.edRepeatSendEmail);
-        edOccupation = findViewById(R.id.edOccupation);
-        edSignIn = findViewById(R.id.edSignIn);
-        edSignUp = findViewById(R.id.edSignUp);
-        onCSignUp = findViewById(R.id.onCSignUp);
-        PasswordReset = findViewById(R.id.PasswordReset);
-        sendPasswordReset = findViewById(R.id.sendPasswordReset);
-
         mAuth = FirebaseAuth.getInstance();
         disableRegistInter();
-        actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     /*Кнопка регистрации*/
     public void onClickSignUp(View view)
     {
         if (!TextUtils.isEmpty(edEmail.getText().toString()) && !TextUtils.isEmpty(edName.getText().toString())
-                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()) && !TextUtils.isEmpty(edOccupation.getText().toString()))
+                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()))
         {
             mAuth.createUserWithEmailAndPassword(edEmail.getText().toString(), edPasswordSignUp.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
+<<<<<<< HEAD
+                        Toast.makeText(getApplicationContext(), "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                        SendEmailVerif();
+                        disableRegistInter();
+=======
                         Toast.makeText(getApplicationContext(), "Регистрация прошла успешно. Подтвердите Email", Toast.LENGTH_SHORT).show();
                         disableRegistInter();
                         SendEmailVerif();
@@ -123,6 +112,7 @@ public class LoginActivity extends AppCompatActivity
                         databaseReference = FirebaseDatabase.getInstance().getReference();
                         user = new User(edName.getText().toString(), edEmail.getText().toString());
                         databaseReference.push().setValue(user);
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
                     }
                     else
                     {
@@ -134,12 +124,15 @@ public class LoginActivity extends AppCompatActivity
         else {
             Toast.makeText(this,"Заполните все поля", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     /*Кнопка создания аккаунта*/
     public void onClickCreateAcc(View view)
     {
         enableRegistInter();
+<<<<<<< HEAD
+=======
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -204,6 +197,7 @@ public class LoginActivity extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
     }
 
     /*Кнопка войти*/
@@ -212,10 +206,11 @@ public class LoginActivity extends AppCompatActivity
         if (!TextUtils.isEmpty(edLogin.getText().toString()) && !TextUtils.isEmpty(edPassword.getText().toString()))
         {
             User = mAuth.getCurrentUser();
-            if (User != null) {
-                User.reload();
-                if (!User.isEmailVerified() && User.getEmail().equals(edLogin.getText().toString())) {
+            if (User != null && User.getEmail().toString() == edLogin.getText().toString()) {
+                if (!User.isEmailVerified())
                     Toast.makeText(getApplicationContext(), "Подтвердите электронную почту", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+=======
                     Toast.makeText(getApplicationContext(), "Если вы уже подтвердили Email и не можете войти, подождите немного. База данных обновляется", Toast.LENGTH_SHORT).show();
                     edRepeatSendEmail.setVisibility(View.VISIBLE);
                 } else {
@@ -231,6 +226,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                     });
                 }
+>>>>>>> f6295596df7d8932a99f58559efb419018bb917a
             }
             else {
                 mAuth.signInWithEmailAndPassword(edLogin.getText().toString(), edPassword.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -252,25 +248,6 @@ public class LoginActivity extends AppCompatActivity
 
     }
 
-
-    /*Repeat sending Email verification*/
-    public void onClickEdRepeatSendEmail(View view) {
-        if (User != null) {
-
-            User.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Письмо отправлено повторно. Проверь свой Email, для подтверждения аккаунта", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Ошибка, письмо не отправлено", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-    }
-
     private void SendEmailVerif() {
         if (User != null)
         {
@@ -279,48 +256,26 @@ public class LoginActivity extends AppCompatActivity
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(getApplicationContext(), "Проверь свой Email, для подтверждения аккаунта", Toast.LENGTH_SHORT).show();
-
                     } else {
                         Toast.makeText(getApplicationContext(), "Ошибка, письмо не отправлено", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+        }
     }
-    }
+
 
     /*Убирает интерфейс регистрации и включает интрефейс входа*/
     private void disableRegistInter()
     {
-        edRepeatSendEmail.setVisibility(View.GONE);
-        edLogin.setVisibility(View.VISIBLE);
-        edEmail.setVisibility(View.GONE);
-        edPasswordSignUp.setVisibility(View.GONE);
-        edPassword.setVisibility(View.VISIBLE);
-        edName.setVisibility(View.GONE);
-        edGender.setVisibility(View.GONE);
-        edOccupation.setVisibility(View.GONE);
-        edSignIn.setVisibility(View.VISIBLE);
-        edSignUp.setVisibility(View.VISIBLE);
-        onCSignUp.setVisibility(View.GONE);
-        PasswordReset.setVisibility(View.VISIBLE);
-        sendPasswordReset.setVisibility(View.GONE);
+        signInLayout.setVisibility(View.VISIBLE);
+        logInLayout.setVisibility(View.GONE);
     }
 
     /*Убирает интерфейс входа и включает интрефейс регистрации*/
     private void enableRegistInter()
     {
-        PasswordReset.setVisibility(View.GONE);
-        edRepeatSendEmail.setVisibility(View.GONE);
-        edLogin.setVisibility(View.GONE);
-        edEmail.setVisibility(View.VISIBLE);
-        edPasswordSignUp.setVisibility(View.VISIBLE);
-        edPassword.setVisibility(View.GONE);
-        edName.setVisibility(View.VISIBLE);
-        edGender.setVisibility(View.VISIBLE);
-        edOccupation.setVisibility(View.VISIBLE);
-        edSignIn.setVisibility(View.GONE);
-        edSignUp.setVisibility(View.GONE);
-        onCSignUp.setVisibility(View.VISIBLE);
-        sendPasswordReset.setVisibility(View.GONE);
+        signInLayout.setVisibility(View.GONE);
+        logInLayout.setVisibility(View.VISIBLE);
     }
 }

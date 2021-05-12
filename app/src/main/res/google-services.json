@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "405106744339",
+    "firebase_url": "https://meowenglish-9c947-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "meowenglish-9c947",
+    "storage_bucket": "meowenglish-9c947.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405106744339:android:e0a367d8d92c01221b73e6",
+        "android_client_info": {
+          "package_name": "com.meowenglish.meowenglish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405106744339-tdij992u113ik239c1tupdkd6gh1ag5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNTBvsTgGB5bw1f_-BIjkx0Gp5cOD8R0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405106744339-tdij992u113ik239c1tupdkd6gh1ag5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
