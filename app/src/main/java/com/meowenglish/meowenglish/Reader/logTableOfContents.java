@@ -18,7 +18,7 @@ import nl.siegmann.epublib.domain.Book;
 
 public class logTableOfContents
 {
-    private TreeMap<String, Integer> FlogTableOfContents(Book book)
+    public TreeMap<String, Integer> FlogTableOfContents(Book book)
     {
         List<TOCReference> tocReferences = book.getTableOfContents().getTocReferences();
 

@@ -2,12 +2,15 @@ package com.meowenglish.meowenglish;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +46,10 @@ public class LoginActivity extends AppCompatActivity
     ArrayAdapter<String> adapter;
     FirebaseUser User;
     private com.meowenglish.meowenglish.data.User user;
+
+    private ViewGroup signInLayout;
+    private ViewGroup logInLayout;
+
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     @Override
@@ -77,11 +84,15 @@ public class LoginActivity extends AppCompatActivity
 
     private void init()
     {
+        signInLayout = findViewById(R.id.signInLayout);
+        logInLayout = findViewById(R.id.logInLayout);
+
         edLogin = findViewById(R.id.edLogin);
         edEmail = findViewById(R.id.edEmail);
         edPasswordSignUp = findViewById(R.id.edPasswordSignUp);
         edPassword = findViewById(R.id.edPassword);
         edName = findViewById(R.id.edName);
+        edOccupation = findViewById(R.id.edOccupation);
 
         edGender = (Spinner) findViewById(R.id.edGender);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Gender);
@@ -107,7 +118,7 @@ public class LoginActivity extends AppCompatActivity
     public void onClickSignUp(View view)
     {
         if (!TextUtils.isEmpty(edEmail.getText().toString()) && !TextUtils.isEmpty(edName.getText().toString())
-                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()) && !TextUtils.isEmpty(edOccupation.getText().toString()))
+                && !TextUtils.isEmpty(edPasswordSignUp.getText().toString()))
         {
             mAuth.createUserWithEmailAndPassword(edEmail.getText().toString(), edPasswordSignUp.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -134,7 +145,8 @@ public class LoginActivity extends AppCompatActivity
         else {
             Toast.makeText(this,"Заполните все поля", Toast.LENGTH_SHORT).show();
         }
-    }
+
+   }
 
     /*Кнопка создания аккаунта*/
     public void onClickCreateAcc(View view)
@@ -285,8 +297,9 @@ public class LoginActivity extends AppCompatActivity
                     }
                 }
             });
+        }
     }
-    }
+
 
     /*Убирает интерфейс регистрации и включает интрефейс входа*/
     private void disableRegistInter()

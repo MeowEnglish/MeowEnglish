@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import nl.siegmann.epublib.epub.EpubReader;
-
 import nl.siegmann.epublib.domain.Book;
 
 public class EpubReaderF
@@ -23,10 +22,14 @@ public class EpubReaderF
         Book book = null;
         try
         {
-            epubInputStream = new FileInputStream(new File(fileName));
+            File file = new File(fileName);
 
-            book = epubReader.readEpub(epubInputStream);
+            if (file.exists())
+            {
+                epubInputStream = new FileInputStream(file);
 
+                book = epubReader.readEpub(epubInputStream);
+            }
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();
