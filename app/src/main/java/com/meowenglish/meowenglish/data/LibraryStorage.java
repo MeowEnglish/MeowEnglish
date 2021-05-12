@@ -32,6 +32,7 @@ public class LibraryStorage extends Application implements Serializable {
         super.onCreate();
 
         String fileContent = readFromFile(SAVE_FILE_PATH);
+        //fileContent = "";
         if (!fileContent.equals(""))
         {
             Gson libraryGson = new GsonBuilder()

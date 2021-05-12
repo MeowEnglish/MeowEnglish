@@ -56,13 +56,11 @@ public class Book implements Parcelable, Serializable
 
     protected Book(Parcel in) {
         title = in.readString();
-        coverImage = in.createByteArray();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
-        dest.writeByteArray(coverImage);
     }
     @Override
     public boolean equals(Object otherBook) {
