@@ -1,22 +1,37 @@
 package com.meowenglish.meowenglish.data;
 
-import java.util.ArrayList;
-import java.util.TreeMap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Book
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.util.TreeMap;
+import java.util.ArrayList;
+
+public class Book implements Parcelable, Serializable
 {
+    public final static String PARCELABLE_EXTRA_NAME = "BOOK";
     /*Название книги*/
     private String title;
 
     /*Обложка книги*/
     private byte[] coverImage;
 
-    /*Список слов данной книги*/
-    private ArrayList<Word> Words;
+    private TreeMap<String, Integer> wordFrequencies = new TreeMap<>();
 
     /*Состояние книги: например: 1 - открыта
-    *   2 - находится в изучении
-    *   3 - Изучена*/
+     *   2 - находится в изучении
+     *   3 - Изучена*/
     private byte State;
 
     /*Время начало изучения книги*/
@@ -25,26 +40,69 @@ public class Book
     /*Время посленего взаимодеймвтия с книгой*/
     private long DateOfLastStudy;
 
-    public Book() { }
 
     public Book(String title, byte[] coverImage)
     {
         this.title = title;
         this.coverImage = coverImage;
-        Words = new ArrayList<>(); /*!!!!!! ArrayList<Word>();*/
+    }
+    public Book(String title, byte[] coverImage, TreeMap<String, Integer> wordFrequencies)
+    {
+        this(title, coverImage);
+
+        this.wordFrequencies = wordFrequencies;
     }
 
-    /* 1 - название, 2 - обложка, 3 - все слова с их частотами*/
-    public Book(String title, byte[] coverImage, TreeMap<String, Integer> WordsI)
-    {
-        this.title = title;
-        this.coverImage = coverImage;
-        this.Words = new ArrayList<>();/*!!!!!! ArrayList<Word>();*/
-        for (TreeMap.Entry<String, Integer> Word : WordsI.entrySet() )
-        {
-            Words.add(new Word(Word.getKey(), Word.getValue()));
-        }
+
+    protected Book(Parcel in) {
+        title = in.readString();
+        coverImage = in.createByteArray();
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeByteArray(coverImage);
+    }
+    @Override
+    public boolean equals(Object otherBook) {
+
+        // If the object is compared with itself then return true
+        if (otherBook == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(otherBook instanceof Book)) {
+            return false;
+        }
+
+        // Compare the data members and return accordingly
+        return this.title.equals(((Book) otherBook).title);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
+    public void AddWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
+        this.wordFrequencies = wordFrequencies;
+    }
+
 
     /*Здесь можно создать конструктор, в который будет передаваться путь к файлу*/
 
@@ -64,12 +122,8 @@ public class Book
         this.coverImage = coverImage;
     }
 
-    public ArrayList<Word> getWords() {
-        return Words;
-    }
-
-    public void setWords(ArrayList<Word> words) {
-        Words = words;
+    public TreeMap<String, Integer> getWordFrequencies() {
+        return wordFrequencies;
     }
 
     public byte getState() {
@@ -94,10 +148,5 @@ public class Book
 
     public void setDateOfLastStudy(long dateOfLastStudy) {
         DateOfLastStudy = dateOfLastStudy;
-    }
-
-    public void WdAdd(Word Wd)
-    {
-        Words.add(Wd);
     }
 }
