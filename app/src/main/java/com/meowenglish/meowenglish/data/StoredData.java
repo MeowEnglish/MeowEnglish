@@ -18,4 +18,8 @@ public class StoredData {
 
         return null;
     }
+    public Book getLastBook()
+    {
+        return books.get(books.size() - 1);
+    }
 }

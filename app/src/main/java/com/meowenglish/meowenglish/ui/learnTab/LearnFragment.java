@@ -16,9 +16,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.meowenglish.meowenglish.R;
+import com.meowenglish.meowenglish.data.Book;
+import com.meowenglish.meowenglish.data.LibraryStorage;
 import com.meowenglish.meowenglish.data.Word;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class LearnFragment extends Fragment {
 
@@ -33,9 +36,10 @@ public class LearnFragment extends Fragment {
         learnViewModel = new ViewModelProvider(this).get(LearnViewModel.class);
         View root = inflater.inflate(R.layout.fragment_learn, container, false);
 
+        wordsFrame = root.findViewById(R.id.learn_word_frame);
+
         InitWords();
 
-        wordsFrame = root.findViewById(R.id.learn_word_frame);
         wordArrayAdapter = new ArrayAdapter<Word>(getContext(), R.layout.word_card, R.id.word_text, words);
 
         wordsFrame.setAdapter(wordArrayAdapter);
@@ -66,8 +70,21 @@ public class LearnFragment extends Fragment {
             public void onScroll(float scrollProgress) {
                 View view = wordsFrame.getSelectedView();
 
-                view.findViewById(R.id.left_indicator).setAlpha(scrollProgress > 0 ? scrollProgress : 0);
-                view.findViewById(R.id.right_indicator).setAlpha(scrollProgress < 0 ? -scrollProgress : 0);
+                view.findViewById(R.id.know_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        moveLeft();
+                    }
+                });
+                view.findViewById(R.id.dont_know_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        moveRight();
+                    }
+                });
+
+                view.findViewById(R.id.right_indicator).setAlpha(scrollProgress > 0 ? scrollProgress : 0);
+                view.findViewById(R.id.left_indicator).setAlpha(scrollProgress < 0 ? -scrollProgress : 0);
             }
         });
 
@@ -86,9 +103,14 @@ public class LearnFragment extends Fragment {
     private void InitWords()
     {
         words = new ArrayList<>();
-        words.add(new Word("test0", 0));
-        words.add(new Word("test1", 0));
-        words.add(new Word("test2", 0));
-        words.add(new Word("test3", 0));
+
+        Book book = ((LibraryStorage)getActivity().getApplication()).getData().getLastBook();
+
+        TreeMap<String, Integer> wordFrequencies = (TreeMap<String, Integer>) book.getWordFrequencies().clone();
+        int length = 20;
+        for (int i = 0; i < length; i++)
+        {
+            words.add(new Word(wordFrequencies.pollFirstEntry().getKey(), 0));
+        }
     }
 }

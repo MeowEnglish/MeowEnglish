@@ -1,4 +1,4 @@
-package com.meowenglish.meowenglish;
+package com.meowenglish.meowenglish.ui.libraryTab;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.meowenglish.meowenglish.R;
 import com.meowenglish.meowenglish.data.Book;
 import com.meowenglish.meowenglish.data.LibraryStorage;
 import com.meowenglish.meowenglish.data.Word;

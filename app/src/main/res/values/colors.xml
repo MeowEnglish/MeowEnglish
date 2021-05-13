@@ -6,6 +6,7 @@
     <color name="teal_200">#BAD9BF</color>
     <color name="teal_700">#CCD9CE</color>
     <color name="almost_black">#272727</color>
+    <color name="dark_gray">#4E4E4E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_orange">#D99066</color>
