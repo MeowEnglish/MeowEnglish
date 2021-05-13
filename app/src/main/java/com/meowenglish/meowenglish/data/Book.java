@@ -15,6 +15,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
 
@@ -57,7 +59,6 @@ public class Book implements Parcelable, Serializable
         this.wordFrequencies = wordFrequencies;
     }
 
-
     protected Book(Parcel in) {
         title = in.readString();
     }
@@ -68,7 +69,6 @@ public class Book implements Parcelable, Serializable
     }
     @Override
     public boolean equals(Object otherBook) {
-
         // If the object is compared with itself then return true
         if (otherBook == this) {
             return true;
@@ -81,7 +81,13 @@ public class Book implements Parcelable, Serializable
         }
 
         // Compare the data members and return accordingly
-        return this.title.equals(((Book) otherBook).title);
+        return this.filePath.equals(((Book) otherBook).filePath);
+    }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.filePath != null ? this.filePath.hashCode() : 0);
+        return hash;
     }
 
     @Override
@@ -101,12 +107,10 @@ public class Book implements Parcelable, Serializable
         }
     };
 
-    public void AddWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
+    public void setWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
         this.wordFrequencies = wordFrequencies;
     }
 
-
-    /*Здесь можно создать конструктор, в который будет передаваться путь к файлу*/
 
     public String getTitle() {
         return title;
@@ -158,5 +162,22 @@ public class Book implements Parcelable, Serializable
 
     public void setDateOfLastStudy(long dateOfLastStudy) {
         DateOfLastStudy = dateOfLastStudy;
+    }
+
+    public void removeWord(String removedWord)
+    {
+        Iterator<TreeMap.Entry<String, Integer>> iterator = wordFrequencies.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            if(removedWord.equals(entry.getKey())){
+                iterator.remove();
+            }
+
+            //count ++;
+        }
+    }
+
+    public void addWord(Word word) {
+        wordFrequencies.put(word.getText(), word.getFrequency());
     }
 }

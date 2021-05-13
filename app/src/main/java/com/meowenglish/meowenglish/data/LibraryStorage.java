@@ -24,69 +24,50 @@ public class LibraryStorage extends Application implements Serializable {
     private final String SAVE_FILE_PATH = "applicationData.json";
 
 
-    private ArrayList<Book> books = new ArrayList<>();
+    private StoredData storedData = new StoredData();
 
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        loadData();
+    }
+
+
+    public void loadData()
+    {
         String fileContent = readFromFile(SAVE_FILE_PATH);
         //fileContent = "";
         if (!fileContent.equals(""))
         {
             Gson libraryGson = new GsonBuilder()
-                    .registerTypeAdapter(Book.class, new BookSerializer())
+                    .registerTypeAdapter(StoredData.class, new StoredDataSerializer())
                     .setPrettyPrinting()
                     .create();
 
-            Type typeOfBooksArray = new TypeToken<ArrayList<Book>>() { }.getType();
-            ArrayList<Book> books = new ArrayList<>();
+            StoredData loadedStoredData = new StoredData();
             try
             {
-                books = libraryGson.fromJson(fileContent, typeOfBooksArray);
+                loadedStoredData = libraryGson.fromJson(fileContent, StoredData.class);
             }
             catch (Exception exception)
             {
 
             }
-            if (books != null)
-            {
-                this.books = books;
-            }
+            this.storedData = loadedStoredData;
         }
     }
-
-
     public void saveData()
     {
         Gson libraryGson = new GsonBuilder()
-                .registerTypeAdapter(Book.class, new BookSerializer())
+                .registerTypeAdapter(StoredData.class, new StoredDataSerializer())
                 .setPrettyPrinting()
                 .create();
-        Type typeOfBooksArray = new TypeToken<ArrayList<Book>>() { }.getType();
-        String booksJson = libraryGson.toJson(books, typeOfBooksArray);
+        String storedDataJson = libraryGson.toJson(storedData, StoredData.class);
 
-        writeToFile(booksJson, SAVE_FILE_PATH);
+        writeToFile(storedDataJson, SAVE_FILE_PATH);
     }
-
-    public  ArrayList<Book> getBooks()
-    {
-        return books;
-    }
-    public Book getBook(Book book)
-    {
-        for (Book libraryBook : books)
-        {
-            if (libraryBook.getTitle().equals(book.getTitle()))
-            {
-                return libraryBook;
-            }
-        }
-
-        return null;
-    }
-
 
     private void writeToFile(String data, String filePath) {
         try {
@@ -98,6 +79,7 @@ public class LibraryStorage extends Application implements Serializable {
 
         }
     }
+
     private String readFromFile(String filePath) {
         String readFile = "";
 
@@ -123,5 +105,29 @@ public class LibraryStorage extends Application implements Serializable {
         }
 
         return readFile;
+    }
+    public void addWordToBook(Book book, Word word)
+    {
+        storedData.getBook(book).addWord(word);
+    }
+    public void removeWordFromKnown(Word word)
+    {
+        storedData.words.remove(word);
+    }
+    public void addWordToKnown(Word word)
+    {
+        storedData.words.add(word);
+    }
+    public void removeWordFromBooks(String word)
+    {
+        for (Book book : storedData.books)
+        {
+            book.removeWord(word);
+        }
+    }
+
+    public StoredData getData()
+    {
+        return storedData;
     }
 }

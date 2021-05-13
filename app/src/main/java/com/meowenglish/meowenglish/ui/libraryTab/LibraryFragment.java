@@ -53,11 +53,11 @@ public class LibraryFragment extends Fragment {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
-        books = ((LibraryStorage)getActivity().getApplication()).getBooks();
+        books = ((LibraryStorage)getActivity().getApplication()).getData().books;
         if (books.size() == 0)
         {
-            books.add(new Book("Пример 0", new byte[0], "dummyPath"));
-            books.add(new Book("Пример 1", new byte[0], "dummyPath"));
+            books.add(new Book("Пример 0", new byte[0], "dummyPath0"));
+            books.add(new Book("Пример 1", new byte[0], "dummyPath1"));
         }
 
         showBooks(books);
@@ -159,7 +159,7 @@ public class LibraryFragment extends Fragment {
 
                     //Analyse the book:
                     logTableOfContents epubAnalizer = new logTableOfContents();
-                    newBook.AddWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
+                    newBook.setWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
 
                     //Add to library:
                     books.add(newBook);

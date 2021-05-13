@@ -13,5 +13,6 @@
     <color name="back_blue">#96BFD9</color>
     <color name="back_button">#225954</color>
     <color name="gray">#888888</color>
+    <color name="known_words_color">#2176BA</color>
 >>>>>>> d91e7ae9d542dc9d6a84d10a263343cd4ddfae2e
 </resources>

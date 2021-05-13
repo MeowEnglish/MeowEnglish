@@ -19,7 +19,7 @@ public class WordsRecyclerAdapter extends RecyclerView.Adapter<WordsRecyclerAdap
 
     private int length;
     private String[] wordsArray;
-    private Integer[] countsArray;
+    private Integer[] frequenciesArray;
 
 
     public WordsRecyclerAdapter(Context context, TreeMap<String, Integer> wordFrequencies)
@@ -28,7 +28,7 @@ public class WordsRecyclerAdapter extends RecyclerView.Adapter<WordsRecyclerAdap
 
         length = wordFrequencies.size();
         wordsArray = wordFrequencies.keySet().toArray(new String[length]);
-        countsArray = wordFrequencies.values().toArray(new Integer[length]);
+        frequenciesArray = wordFrequencies.values().toArray(new Integer[length]);
     }
 
 
@@ -44,7 +44,7 @@ public class WordsRecyclerAdapter extends RecyclerView.Adapter<WordsRecyclerAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.word.setText(wordsArray[position]);
-        holder.frequency.setText(countsArray[position].toString());
+        holder.frequency.setText(frequenciesArray[position].toString());
     }
 
     @Override
@@ -65,5 +65,9 @@ public class WordsRecyclerAdapter extends RecyclerView.Adapter<WordsRecyclerAdap
             word = itemView.findViewById(R.id.word);
             frequency = itemView.findViewById(R.id.frequency);
         }
+
+
+        public TextView getWordTextView() { return word; }
+        public TextView getFrequencyTextView() { return frequency; }
     }
 }
