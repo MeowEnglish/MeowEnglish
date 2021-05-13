@@ -1,163 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edButton"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back_blue"
-    >
+    android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:id="@+id/signInLayout"
-        android:layout_width="285dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <EditText
+        android:id="@+id/edLogin"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="188dp"
+        android:ems="10"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        >
-
-        <EditText
-            android:id="@+id/edLogin"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Email"
-            />
-
-        <EditText
-            android:id="@+id/edPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:text="password"
-            />
-
-        <Button
-            android:id="@+id/edSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onClickSignIn"
-            android:text=" Войти"
-            app:backgroundTint="#F2BFAC" />
-
-        <Button
-            android:id="@+id/edSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onClickCreateAcc"
-            android:text="Создать аккаунт"
-            app:backgroundTint="#D99066" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/logInLayout"
-        android:layout_width="285dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center"
+        android:hint="Email"
+        android:inputType="textWebEmailAddress"
         android:visibility="visible"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/edName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Имя"
-            />
+    <Button
+        android:id="@+id/PasswordReset"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onClickPasswordReset"
+        android:text="Забыл пароль"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edSignUp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edSignUp" />
 
-        <EditText
-            android:id="@+id/edEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            tools:text="Email"
-            />
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edLogin"
+        app:layout_constraintStart_toStartOf="@+id/edLogin"
+        app:layout_constraintTop_toBottomOf="@+id/edLogin" />
 
-        <EditText
-            android:id="@+id/edPasswordSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            tools:text="Password"
-            />
+    <Button
+        android:id="@+id/edSignIn"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickSignIn"
+        android:text=" Войти"
+        android:visibility="visible"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/edPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edPassword" />
 
-        <TextView
-            android:id="@+id/textOccupation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:inputType="textPersonName"
-            android:text="Чем вы занимаетесь?"
-            />
+    <Button
+        android:id="@+id/edSignUp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onClickCreateAcc"
+        android:text="Создать аккаунт"
+        android:visibility="visible"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/edSignIn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/edSignIn" />
 
-        <EditText
-            android:id="@+id/edOccupation"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            />
+    <Button
+        android:id="@+id/edRepeatSendEmail"
+        android:layout_width="269dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="84dp"
+        android:onClick="onClickEdRepeatSendEmail"
+        android:text="Отправить письмо повторно"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorPrimary"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/edSignUp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edSignUp" />
 
-        <TextView
-            android:id="@+id/textGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:ems="10"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:inputType="textPersonName"
-            android:text="Укажите гендер"
-            />
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="128dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Имя"
+        android:inputType="textPersonName"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edLogin" />
 
-        <Spinner
-            android:id="@+id/edGender"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            />
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/edName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edName"
+        app:layout_constraintTop_toBottomOf="@+id/edName" />
 
-        <Button
-            android:id="@+id/onCSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:onClick="onClickSignUp"
-            android:text="Зарегистрироваться"
-            />
+    <EditText
+        android:id="@+id/edPasswordSignUp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/edEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
+    <Spinner
+        android:id="@+id/edGender"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.582"
+        app:layout_constraintStart_toStartOf="@+id/edPasswordSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edPasswordSignUp" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/onCSignUp"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onClickSignUp"
+        android:text="Зарегистрироваться"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/edOccupation"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edOccupation"
+        app:layout_constraintTop_toBottomOf="@+id/edOccupation" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edOccupation"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Чем вы занимаетесь?"
+        android:inputType="textPersonName"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/edPasswordSignUp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edPasswordSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/edGender" />
+
+    <Button
+        android:id="@+id/sendPasswordReset"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:onClick="onClickSendPasswordReset"
+        android:text="Продолжить"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/edLogin"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edLogin"
+        app:layout_constraintTop_toTopOf="@+id/PasswordReset" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

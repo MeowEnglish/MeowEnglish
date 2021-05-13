@@ -1,9 +1,12 @@
 package com.meowenglish.meowenglish;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.meowenglish.meowenglish.data.LibraryStorage;
 
 import androidx.appcompat.app.ActionBar;
@@ -32,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        ((LibraryStorage) getApplication()).saveData();
+    public void edSignOutF(View view)
+    {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+        Intent homeIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(homeIntent);
+        finish();
     }
 }
