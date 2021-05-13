@@ -1,5 +1,7 @@
 package com.meowenglish.meowenglish.data;
 
+import androidx.annotation.NonNull;
+
 public class Word
 {
     /*Слово*/
@@ -53,6 +55,12 @@ public class Word
         int hash = 3;
         hash = 53 * hash + (this.text != null ? this.text.hashCode() : 0);
         return hash;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return text;
     }
 
     public String getText() {

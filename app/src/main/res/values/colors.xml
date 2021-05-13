@@ -5,10 +5,12 @@
     <color name="green_700">#1D5943</color>
     <color name="teal_200">#BAD9BF</color>
     <color name="teal_700">#CCD9CE</color>
+    <color name="almost_black">#272727</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_orange">#D99066</color>
     <color name="orange">#BD6532</color>
+    <color name="red">#BD3232</color>
 
     <color name="back_blue">#96BFD9</color>
     <color name="back_button">#225954</color>
