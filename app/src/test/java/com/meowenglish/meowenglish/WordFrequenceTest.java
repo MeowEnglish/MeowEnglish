@@ -48,8 +48,8 @@ public class WordFrequenceTest {
         Map<String, Integer> words = new HashMap<String, Integer>();
         TreeMap<String, Integer> testbook = new TreeMap<String, Integer>();
 
-        words.put("Igor", 0);  words.put("Dima", 1);
-        testbook.put("Dima", 1);  testbook.put("Igor", 0);
+        words.put("Daria", 0);  words.put("Dima", 1);
+        testbook.put("Dima", 1);  testbook.put("Daria", 0);
 
         TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(new ValueComparator(words));
         sorted_map.putAll(words);
