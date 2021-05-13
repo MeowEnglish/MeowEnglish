@@ -11,8 +11,11 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
+import com.meowenglish.meowenglish.Reader.logTableOfContents;
 
 import java.lang.reflect.Type;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Book> {
@@ -24,6 +27,7 @@ public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Bo
 
         JsonObject obj = new JsonObject();
         obj.addProperty("title", src.getTitle());
+        obj.addProperty("filePath", src.getFilePath());
         obj.addProperty("wordFrequencies", gson.toJson(src.getWordFrequencies()));
 
         return obj;
@@ -35,9 +39,31 @@ public class BookSerializer implements JsonSerializer<Book>, JsonDeserializer<Bo
         JsonObject jsonObject = json.getAsJsonObject();
 
         String title = jsonObject.get("title").getAsString();
+        String filePath = jsonObject.get("filePath").getAsString();
         Type typeOfArray = new TypeToken<TreeMap<String, Integer>>() { }.getType();
-        TreeMap<String, Integer> wordFrequencies = gson.fromJson(jsonObject.get("wordFrequencies").getAsString(), typeOfArray);
+        Map<String, Integer> wordFrequencies = gson.fromJson(jsonObject.get("wordFrequencies").getAsString(), typeOfArray);
+        TreeMap<String, Integer> sortedWordFrequencies = new TreeMap<String, Integer>(new ValueComparator(wordFrequencies));
+        sortedWordFrequencies.putAll(wordFrequencies);
 
-        return new Book(title, new byte[0], wordFrequencies);
+        return new Book(title, new byte[0], filePath, sortedWordFrequencies);
+    }
+
+
+    class ValueComparator implements Comparator<String> {
+        Map<String, Integer> base;
+
+        public ValueComparator(Map<String, Integer> base) {
+            this.base = base;
+        }
+
+        // Note: this comparator imposes orderings that are inconsistent with
+        // equals.
+        public int compare(String a, String b) {
+            if (base.get(a) >= base.get(b)) {
+                return -1;
+            } else {
+                return 1;
+            } // returning 0 would merge keys
+        }
     }
 }

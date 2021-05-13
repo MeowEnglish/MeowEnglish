@@ -1,86 +1,105 @@
 package com.meowenglish.meowenglish.data;
 
+import androidx.annotation.NonNull;
+
 public class Word
 {
     /*Слово*/
-    private String Wd;
-
-    /*Состояние слова*/
-    private byte State;
+    private String text;
 
     /*Число повторений*/
-    private byte NumOfRepet;
+    private int repeatCount;
 
     /*Число повторений слова в книге*/
-    private int Weight;
+    private int frequency;
 
     /*Последняя активность со словом,
         *после изучения - время окончания обучения*/
-    private long LastActivity;
+    private long lastActivityTime;
 
     /*Время начала обучения слова*/
-    private long StudyStartTime;
+    private long studyStartTime;
 
     public Word() {}
-
-    public Word(String Wd)
+    public Word(String text)
     {
-        this.Wd = Wd;
-        NumOfRepet = 0;
+        this.text = text;
+        repeatCount = 0;
     }
-
-    public Word(String Wd, int Weight)
+    public Word(String text, int frequency)
     {
-        this.Wd = Wd;
-        this.Weight = Weight;
-        NumOfRepet = 0;
+        this.text = text;
+        this.frequency = frequency;
+        repeatCount = 0;
     }
 
-    public String getWd() {
-        return Wd;
+
+    @Override
+    public boolean equals(Object otherWord) {
+        // If the object is compared with itself then return true
+        if (otherWord == this) {
+            return true;
+        }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+        if (!(otherWord instanceof Word)) {
+            return false;
+        }
+
+        // Compare the data members and return accordingly
+        return this.text.equals(((Word) otherWord).text);
+    }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.text != null ? this.text.hashCode() : 0);
+        return hash;
     }
 
-    public void setWd(String wd) {
-        Wd = wd;
+    @NonNull
+    @Override
+    public String toString() {
+        return text;
     }
 
-    public byte getState() {
-        return State;
+    public String getText() {
+        return text;
     }
 
-    public void setState(byte state) {
-        State = state;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public byte getNumOfRepet() {
-        return NumOfRepet;
+    public int getRepeatCount() {
+        return repeatCount;
     }
 
-    public void setNumOfRepet(byte numOfRepet) {
-        NumOfRepet = numOfRepet;
+    public void setRepeatCount(int repeatCount) {
+        this.repeatCount = repeatCount;
     }
 
-    public int getWeight() {
-        return Weight;
+    public int getFrequency() {
+        return frequency;
     }
 
-    public void setWeight(int weight) {
-        Weight = weight;
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 
-    public long getLastActivity() {
-        return LastActivity;
+    public long getLastActivityTime() {
+        return lastActivityTime;
     }
 
-    public void setLastActivity(long lastActivity) {
-        LastActivity = lastActivity;
+    public void setLastActivityTime(long lastActivityTime) {
+        this.lastActivityTime = lastActivityTime;
     }
 
     public long getStudyStartTime() {
-        return StudyStartTime;
+        return studyStartTime;
     }
 
     public void setStudyStartTime(long studyStartTime) {
-        StudyStartTime = studyStartTime;
+        this.studyStartTime = studyStartTime;
     }
 }

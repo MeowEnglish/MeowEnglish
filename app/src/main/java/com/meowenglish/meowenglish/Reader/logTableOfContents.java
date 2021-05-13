@@ -45,9 +45,9 @@ public class logTableOfContents
                     {
                         if (!formatedWord.isEmpty())
                         {
-                            countRepWords = words.containsKey(formatedWord) ? words.get(formatedWord) + 1 : 1;
+                            formatedWord = formatedWord.toLowerCase();
 
-                            formatedWord = Character.toLowerCase(formatedWord.charAt(0)) + formatedWord.substring(1);
+                            countRepWords = words.containsKey(formatedWord) ? words.get(formatedWord) + 1 : 1;
                             words.put(formatedWord, countRepWords);
                         }
                     }

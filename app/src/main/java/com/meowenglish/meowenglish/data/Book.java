@@ -15,6 +15,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
 
@@ -23,6 +25,9 @@ public class Book implements Parcelable, Serializable
     public final static String PARCELABLE_EXTRA_NAME = "BOOK";
     /*Название книги*/
     private String title;
+
+    /*Название книги*/
+    private String filePath;
 
     /*Обложка книги*/
     private byte[] coverImage;
@@ -41,32 +46,29 @@ public class Book implements Parcelable, Serializable
     private long DateOfLastStudy;
 
 
-    public Book(String title, byte[] coverImage)
+    public Book(String title, byte[] coverImage, String filePath)
     {
         this.title = title;
         this.coverImage = coverImage;
+        this.filePath = filePath;
     }
-    public Book(String title, byte[] coverImage, TreeMap<String, Integer> wordFrequencies)
+    public Book(String title, byte[] coverImage, String filePath, TreeMap<String, Integer> wordFrequencies)
     {
-        this(title, coverImage);
+        this(title, coverImage, filePath);
 
         this.wordFrequencies = wordFrequencies;
     }
 
-
     protected Book(Parcel in) {
         title = in.readString();
-        coverImage = in.createByteArray();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
-        dest.writeByteArray(coverImage);
     }
     @Override
     public boolean equals(Object otherBook) {
-
         // If the object is compared with itself then return true
         if (otherBook == this) {
             return true;
@@ -79,7 +81,13 @@ public class Book implements Parcelable, Serializable
         }
 
         // Compare the data members and return accordingly
-        return this.title.equals(((Book) otherBook).title);
+        return this.filePath.equals(((Book) otherBook).filePath);
+    }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + (this.filePath != null ? this.filePath.hashCode() : 0);
+        return hash;
     }
 
     @Override
@@ -99,12 +107,10 @@ public class Book implements Parcelable, Serializable
         }
     };
 
-    public void AddWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
+    public void setWordFrequencies(TreeMap<String, Integer> wordFrequencies) {
         this.wordFrequencies = wordFrequencies;
     }
 
-
-    /*Здесь можно создать конструктор, в который будет передаваться путь к файлу*/
 
     public String getTitle() {
         return title;
@@ -112,6 +118,14 @@ public class Book implements Parcelable, Serializable
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public byte[] getCoverImage() {
@@ -148,5 +162,22 @@ public class Book implements Parcelable, Serializable
 
     public void setDateOfLastStudy(long dateOfLastStudy) {
         DateOfLastStudy = dateOfLastStudy;
+    }
+
+    public void removeWord(String removedWord)
+    {
+        Iterator<TreeMap.Entry<String, Integer>> iterator = wordFrequencies.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            if(removedWord.equals(entry.getKey())){
+                iterator.remove();
+            }
+
+            //count ++;
+        }
+    }
+
+    public void addWord(Word word) {
+        wordFrequencies.put(word.getText(), word.getFrequency());
     }
 }

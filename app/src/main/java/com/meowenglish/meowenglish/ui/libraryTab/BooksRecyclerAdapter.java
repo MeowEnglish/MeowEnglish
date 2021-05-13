@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.meowenglish.meowenglish.R;
-import com.meowenglish.meowenglish.WordFrequenceActivity;
 import com.meowenglish.meowenglish.data.Book;
 
 import java.io.ByteArrayOutputStream;

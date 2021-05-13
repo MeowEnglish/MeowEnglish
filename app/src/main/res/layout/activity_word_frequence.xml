@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WordFrequenceActivity">
+    tools:context=".ui.libraryTab.WordFrequenceActivity"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wordFrequencies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/known_words_color"
         />
 
 </LinearLayout>

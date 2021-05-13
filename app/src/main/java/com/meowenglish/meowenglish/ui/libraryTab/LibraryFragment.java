@@ -53,11 +53,11 @@ public class LibraryFragment extends Fragment {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
-        books = ((LibraryStorage)getActivity().getApplication()).getBooks();
+        books = ((LibraryStorage)getActivity().getApplication()).getData().books;
         if (books.size() == 0)
         {
-            books.add(new Book("Пример 0", new byte[0]));
-            books.add(new Book("Пример 1", new byte[0]));
+            books.add(new Book("Пример 0", new byte[0], "dummyPath0"));
+            books.add(new Book("Пример 1", new byte[0], "dummyPath1"));
         }
 
         showBooks(books);
@@ -117,6 +117,16 @@ public class LibraryFragment extends Fragment {
         {
             String filePath = UriConvert.getPath(getContext(), data.getData());
 
+            for (Book book : books) {
+                if (book.getFilePath().equals(filePath))
+                {
+                    String toastMessage = "Такая книга уже существует";
+                    Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_LONG).show();
+
+                    return;
+                }
+            }
+
             int lastDotIndex = filePath.lastIndexOf('.');
             String fileExtension = filePath.substring(lastDotIndex + 1);
 
@@ -145,11 +155,11 @@ public class LibraryFragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    newBook = new Book(epubBook.getTitle(), convertBitmapToBytes(coverImage));
+                    newBook = new Book(epubBook.getTitle(), convertBitmapToBytes(coverImage), filePath);
 
                     //Analyse the book:
                     logTableOfContents epubAnalizer = new logTableOfContents();
-                    //newBook.AddWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
+                    newBook.setWordFrequencies(epubAnalizer.FlogTableOfContents(epubBook));
 
                     //Add to library:
                     books.add(newBook);
