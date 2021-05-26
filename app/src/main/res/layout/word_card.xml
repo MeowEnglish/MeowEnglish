@@ -23,18 +23,32 @@
         android:textSize="30dp"
         />
 
-    <TextView
-        android:id="@+id/word_translate_text"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="перевод"
-        android:paddingTop="60dp"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/dark_gray"
-        android:textSize="27dp"
-        />
+        >
+        <TextView
+            android:id="@+id/word_translate_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="перевод"
+            android:paddingTop="60dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/dark_gray"
+            android:textSize="27dp"
+            />
+        <ProgressBar
+            android:id="@+id/translate_loading"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:gravity="center"
+            />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
