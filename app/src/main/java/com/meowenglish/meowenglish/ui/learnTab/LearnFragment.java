@@ -52,12 +52,12 @@ public class LearnFragment extends Fragment {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(getContext(), "Left", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onRightCardExit(Object o) {
-                Toast.makeText(getContext(), "Right", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

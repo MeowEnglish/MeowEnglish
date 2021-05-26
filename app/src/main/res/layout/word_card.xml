@@ -8,98 +8,9 @@
     android:layout_marginTop="35dp"
     android:layout_marginBottom="35dp"
     android:layout_gravity="center"
+    android:orientation="vertical"
     android:background="@color/green_200"
     >
-
-    <TextView
-        android:id="@+id/word_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="word"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textColor="@color/almost_black"
-        android:textSize="30dp"
-        />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <TextView
-            android:id="@+id/word_translate_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="перевод"
-            android:paddingTop="60dp"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textColor="@color/dark_gray"
-            android:textSize="27dp"
-            />
-        <ProgressBar
-            android:id="@+id/translate_loading"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="35dp"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:gravity="center"
-            />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom"
-        >
-        <FrameLayout
-            android:id="@+id/know_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:alpha="0.6"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textSize="26dp"
-                android:textColor="@color/almost_black"
-                android:text="знаю"
-                />
-        </FrameLayout>
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            />
-        <FrameLayout
-            android:id="@+id/dont_know_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:alpha="0.6"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textSize="26dp"
-                android:textColor="@color/almost_black"
-                android:text="не знаю"
-                />
-        </FrameLayout>
-    </LinearLayout>
-
-
 
     <View
         android:id="@+id/right_indicator"
@@ -118,4 +29,99 @@
         android:alpha="0"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/word_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="word"
+            android:layout_gravity="top"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/almost_black"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            >
+            <TextView
+                android:id="@+id/word_translate_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="перевод"
+                android:layout_gravity="center"
+                android:gravity="top"
+                android:textColor="@color/dark_gray"
+                android:textSize="23dp"
+                />
+            <ProgressBar
+                android:id="@+id/translate_loading"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:gravity="center"
+                />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            >
+            <FrameLayout
+                android:id="@+id/know_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:alpha="0.6"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:textColor="@color/almost_black"
+                    android:text="знаю"
+                    />
+            </FrameLayout>
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                />
+            <FrameLayout
+                android:id="@+id/dont_know_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:alpha="0.6"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:textColor="@color/almost_black"
+                    android:text="не знаю"
+                    />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>

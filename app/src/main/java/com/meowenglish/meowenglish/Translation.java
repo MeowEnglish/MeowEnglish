@@ -32,6 +32,9 @@ public final class Translation {
                 if (enWord.equals(text))
                 {
                     String ruWord = line.substring(spaceIndex + 1);
+                    String startRuWord = ruWord.substring(0, ruWord.indexOf('['));
+                    String finishRuWord = ruWord.substring(ruWord.indexOf(']') + 1);
+                    ruWord = startRuWord + finishRuWord;
                     return ruWord;
                 }
             }
