@@ -6,6 +6,7 @@ public class Word
 {
     /*Слово*/
     private String text;
+    private String translationText;
 
     /*Число повторений*/
     private int repeatCount;
@@ -69,6 +70,14 @@ public class Word
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTranslationText() {
+        return translationText;
+    }
+
+    public void setTranslationText(String translationText) {
+        this.translationText = translationText;
     }
 
     public int getRepeatCount() {

@@ -8,6 +8,12 @@
     tools:context=".ui.learnTab.LearnFragment"
     >
 
+    <ProgressBar
+        android:id="@+id/card_loading"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/learn_word_frame"
         android:layout_height="match_parent"

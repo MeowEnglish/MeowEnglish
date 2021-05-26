@@ -2,6 +2,7 @@ package com.meowenglish.meowenglish.ui.learnTab;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.meowenglish.meowenglish.R;
+import com.meowenglish.meowenglish.Translation;
 import com.meowenglish.meowenglish.data.Book;
 import com.meowenglish.meowenglish.data.LibraryStorage;
 import com.meowenglish.meowenglish.data.Word;
@@ -40,7 +40,7 @@ public class LearnFragment extends Fragment {
 
         InitWords();
 
-        wordArrayAdapter = new ArrayAdapter<Word>(getContext(), R.layout.word_card, R.id.word_text, words);
+        wordArrayAdapter = new WordCardAdapter(getContext(), words);
 
         wordsFrame.setAdapter(wordArrayAdapter);
         wordsFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -52,12 +52,12 @@ public class LearnFragment extends Fragment {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(getContext(), "Left", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onRightCardExit(Object o) {
-                Toast.makeText(getContext(), "Right", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -85,6 +85,8 @@ public class LearnFragment extends Fragment {
 
                 view.findViewById(R.id.right_indicator).setAlpha(scrollProgress > 0 ? scrollProgress : 0);
                 view.findViewById(R.id.left_indicator).setAlpha(scrollProgress < 0 ? -scrollProgress : 0);
+
+                wordArrayAdapter.notifyDataSetChanged();
             }
         });
 
@@ -110,7 +112,10 @@ public class LearnFragment extends Fragment {
         int length = 20;
         for (int i = 0; i < length; i++)
         {
-            words.add(new Word(wordFrequencies.pollFirstEntry().getKey(), 0));
+            Word word = new Word(wordFrequencies.pollFirstEntry().getKey(), 0);
+
+            word.setTranslationText(Translation.Translate(getContext(), word.getText()));
+            words.add(word);
         }
     }
 }
