@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/back_blue"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="статистика"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:background="@color/orange"
+
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Количество\nизученных слов:"
+            android:textColor="@color/almost_black"
+            android:textSize="27dp"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="12"
+            android:textAlignment="textEnd"
+            android:textColor="@color/almost_black"
+            android:textSize="27dp"
+            android:padding="4dp"
+            android:gravity="end|center"
+            />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Время в\nприложении:"
+            android:textColor="@color/almost_black"
+            android:textSize="27dp"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="1ч. 21м."
+            android:textAlignment="textEnd"
+            android:textColor="@color/almost_black"
+            android:textSize="27dp"
+            android:padding="4dp"
+            android:gravity="end|center"
+            />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/almost_black"
+            android:text="Количество\nдрузей:"
+            android:textSize="27dp"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2"
+            android:textColor="@color/almost_black"
+            android:textAlignment="textEnd"
+            android:textSize="27dp"
+            android:padding="4dp"
+            android:gravity="end|center"
+            />
+    </FrameLayout>
+
+</LinearLayout>
