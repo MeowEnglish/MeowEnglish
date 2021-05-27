@@ -50,16 +50,24 @@ public final class Translation {
         String ruWord = line.substring(spaceIndex + 1);
 
         ruWord = removeBracketStatements(ruWord, '[', ']');
-        ruWord = removeBracketStatements(ruWord, '(', ')');
 
-        for (int i = 0; i < 10; i++)
-        {
-            ruWord = ruWord.replace(" " + i + ".", "\n" + i + "");
-        }
+        ruWord = arrangeByNumbers(ruWord, new String[] {".", ">"});
 
         return ruWord;
     }
 
+    private static String arrangeByNumbers(String text, String[] closeChars)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < closeChars.length; j++)
+            {
+                text = text.replace(" " + i + closeChars[j], "\n" + i + "");
+            }
+        }
+
+        return text;
+    }
     private static String removeBracketStatements(String text, char openBracket, char closeBracket)
     {
         int openBracketIndex = text.indexOf(openBracket);
