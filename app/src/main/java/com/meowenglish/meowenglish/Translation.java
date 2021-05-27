@@ -76,7 +76,7 @@ public final class Translation {
             openBracketIndex = text.indexOf(openBracket);
             String startRuWord = text.substring(0, openBracketIndex);
 
-            int closeBracketIndex = text.indexOf(openBracket);
+            int closeBracketIndex = text.indexOf(closeBracket);
             if (closeBracketIndex < 0)
             {
                 return text;
