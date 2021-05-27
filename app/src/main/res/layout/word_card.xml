@@ -17,7 +17,7 @@
         android:layout_gravity="start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red"
+        android:background="@drawable/rounded_card_red"
         android:alpha="0"
         />
     <View
@@ -25,7 +25,7 @@
         android:layout_gravity="end"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/known_words_color"
+        android:background="@drawable/rounded_card_blue"
         android:alpha="0"
         />
 

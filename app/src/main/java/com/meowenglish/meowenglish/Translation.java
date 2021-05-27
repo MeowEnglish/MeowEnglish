@@ -74,6 +74,11 @@ public final class Translation {
         while (openBracketIndex >= 0)
         {
             openBracketIndex = text.indexOf(openBracket);
+            if (openBracketIndex < 0)
+            {
+                return text;
+            }
+            Log.e("translation", "" + openBracketIndex);
             String startRuWord = text.substring(0, openBracketIndex);
 
             int closeBracketIndex = text.indexOf(closeBracket);
