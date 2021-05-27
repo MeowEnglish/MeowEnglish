@@ -31,10 +31,8 @@ public final class Translation {
                 String enWord = line.substring(0, spaceIndex);
                 if (enWord.equals(text))
                 {
-                    String ruWord = line.substring(spaceIndex + 1);
-                    String startRuWord = ruWord.substring(0, ruWord.indexOf('['));
-                    String finishRuWord = ruWord.substring(ruWord.indexOf(']') + 1);
-                    ruWord = startRuWord + finishRuWord;
+                    String ruWord = extractTranslation(line);
+
                     return ruWord;
                 }
             }
@@ -45,5 +43,40 @@ public final class Translation {
         }
 
         return "";
+    }
+
+    private static String extractTranslation(String line) {
+        int spaceIndex = line.indexOf(' ');
+        String ruWord = line.substring(spaceIndex + 1);
+
+        ruWord = removeBracketStatements(ruWord, '[', ']');
+        ruWord = removeBracketStatements(ruWord, '(', ')');
+
+        for (int i = 0; i < 10; i++)
+        {
+            ruWord = ruWord.replace(" " + i + ".", "\n" + i + "");
+        }
+
+        return ruWord;
+    }
+
+    private static String removeBracketStatements(String text, char openBracket, char closeBracket)
+    {
+        int openBracketIndex = text.indexOf(openBracket);
+        while (openBracketIndex >= 0)
+        {
+            openBracketIndex = text.indexOf(openBracket);
+            String startRuWord = text.substring(0, openBracketIndex);
+
+            int closeBracketIndex = text.indexOf(openBracket);
+            if (closeBracketIndex < 0)
+            {
+                return text;
+            }
+            String finishRuWord = text.substring(closeBracketIndex + 1);
+            text = startRuWord + finishRuWord;
+        }
+
+        return  text;
     }
 }
